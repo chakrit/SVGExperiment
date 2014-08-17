@@ -1,8 +1,9 @@
 //
 //  DDLog+LOGV.h
-//  CocoaLumberjack
+//  Lumberjack
 //
 //  Created by Mike Pontillo on 11/20/12.
+//
 //
 
 #ifndef Lumberjack_DDLog_LOGV_h

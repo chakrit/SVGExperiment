@@ -1,15 +1,10 @@
-//
-//  DDTTYLogger.m
-//  CocoaLumberjack
-//
-
 #import "DDTTYLogger.h"
 
 #import <unistd.h>
 #import <sys/uio.h>
 
 /**
- * Welcome to CocoaLumberjack!
+ * Welcome to Cocoa Lumberjack!
  * 
  * The project page has a wealth of documentation if you have any questions.
  * https://github.com/CocoaLumberjack/CocoaLumberjack

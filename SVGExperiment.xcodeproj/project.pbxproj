@@ -10,6 +10,7 @@
 		223B9F2E19A08A9F007E46E1 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223B9F2D19A08A9F007E46E1 /* RootViewController.swift */; };
 		223BE9E919A08E6000EE15E5 /* twinkle.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 223BE9E719A08E6000EE15E5 /* twinkle.mp3 */; };
 		223BE9EA19A08E6000EE15E5 /* twinkle.txt in Resources */ = {isa = PBXBuildFile; fileRef = 223BE9E819A08E6000EE15E5 /* twinkle.txt */; };
+		2284937C19A12544001E3C99 /* Twinkle.svg in Resources */ = {isa = PBXBuildFile; fileRef = 2284937B19A12544001E3C99 /* Twinkle.svg */; };
 		22DF71E919A089D80015ADAA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DF71E819A089D80015ADAA /* AppDelegate.swift */; };
 		22DF71EB19A089D80015ADAA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22DF71EA19A089D80015ADAA /* Images.xcassets */; };
 		BCE48D23445D4734BD3E3F8E /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D260C2650E5D41658A37C4B7 /* libPods.a */; };
@@ -19,6 +20,8 @@
 		223B9F2D19A08A9F007E46E1 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		223BE9E719A08E6000EE15E5 /* twinkle.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = twinkle.mp3; sourceTree = "<group>"; };
 		223BE9E819A08E6000EE15E5 /* twinkle.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = twinkle.txt; sourceTree = "<group>"; };
+		2284937B19A12544001E3C99 /* Twinkle.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Twinkle.svg; sourceTree = "<group>"; };
+		22BDB6F019A1235100F8485E /* SVGExperiment-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SVGExperiment-Bridging-Header.h"; sourceTree = "<group>"; };
 		22DF71D319A089D80015ADAA /* SVGExperiment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SVGExperiment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		22DF71E719A089D80015ADAA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		22DF71E819A089D80015ADAA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -43,6 +46,7 @@
 			isa = PBXGroup;
 			children = (
 				223BE9E719A08E6000EE15E5 /* twinkle.mp3 */,
+				2284937B19A12544001E3C99 /* Twinkle.svg */,
 				223BE9E819A08E6000EE15E5 /* twinkle.txt */,
 			);
 			name = Assets;
@@ -70,6 +74,7 @@
 		22DF71DC19A089D80015ADAA /* SVGExperiment */ = {
 			isa = PBXGroup;
 			children = (
+				22BDB6F019A1235100F8485E /* SVGExperiment-Bridging-Header.h */,
 				22DF71E819A089D80015ADAA /* AppDelegate.swift */,
 				223B9F2D19A08A9F007E46E1 /* RootViewController.swift */,
 				22DF71EA19A089D80015ADAA /* Images.xcassets */,
@@ -156,6 +161,7 @@
 				22DF71EB19A089D80015ADAA /* Images.xcassets in Resources */,
 				223BE9EA19A08E6000EE15E5 /* twinkle.txt in Resources */,
 				223BE9E919A08E6000EE15E5 /* twinkle.mp3 in Resources */,
+				2284937C19A12544001E3C99 /* Twinkle.svg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -292,10 +298,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = SVGExperiment/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "SVGExperiment/SVGExperiment-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -305,10 +314,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = SVGExperiment/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "SVGExperiment/SVGExperiment-Bridging-Header.h";
 			};
 			name = Release;
 		};

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg width="525px" height="323px" viewBox="0 0 525 323" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+<svg width="525px" height="323px" viewBox="0 0 525 323" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" xmlns:lb="http://languagebook.hyperworks.co.th/">
     <title>[svg] Twinkle</title>
     <description>Created with Sketch (http://www.bohemiancoding.com/sketch)</description>
     <defs>
@@ -68,23 +68,23 @@
             <polygon id="Star-1-copy" sketch:type="MSShapeGroup" transform="translate(249.000000, 103.000000) rotate(29.000000) translate(-249.000000, -103.000000) " points="248.999998 141 204.328324 164.485294 212.859853 114.742647 176.719704 79.5147101 226.664168 72.257349 249.000001 27 271.335848 72.2573602 321.280308 79.5147463 285.140144 114.742657 293.671674 164.485295 "></polygon>
         </g>
         <g id="Twinkle" sketch:type="MSLayerGroup" transform="translate(31.000000, 68.000000)" font-weight="normal" font-family="Chalkduster" line-spacing="29" letter-spacing="0.154838711" font-size="27" fill="#696969">
-            <text id="Twinkle-Twinkle-litt" filter="url(#filter-1)" sketch:type="MSTextLayer">
-                <tspan x="0" y="33">Twinkle Twinkle little star</tspan>
+            <text id="Twinkle-Twinkle-litt" filter="url(#filter-1)" sketch:type="MSTextLayer" x="0" y="33">
+                <tspan lb:interval="">Twinkle </tspan><tspan>Twinkle </tspan><tspan>little </tspan><tspan>star</tspan>
             </text>
-            <text id="How-I-wonder-what-yo" filter="url(#filter-2)" sketch:type="MSTextLayer">
-                <tspan x="8" y="65">How I wonder what you are</tspan>
+            <text id="How-I-wonder-what-yo" filter="url(#filter-2)" sketch:type="MSTextLayer" x="8" y="65">
+                <tspan lb:interval="">How </tspan><tspan>I </tspan><tspan>wonder </tspan><tspan>what </tspan><tspan>you </tspan><tspan>are</tspan>
             </text>
-            <text id="Up-above-the-world-s" filter="url(#filter-3)" sketch:type="MSTextLayer">
-                <tspan x="22" y="96">Up above the world so high</tspan>
+            <text id="Up-above-the-world-s" filter="url(#filter-3)" sketch:type="MSTextLayer" x="22" y="96">
+                <tspan>Up </tspan><tspan>above </tspan><tspan>the </tspan><tspan>world </tspan><tspan>so </tspan><tspan>high</tspan>
             </text>
-            <text id="Like-a-diamond-in-th" filter="url(#filter-4)" sketch:type="MSTextLayer">
-                <tspan x="35" y="128">Like a diamond in the sky</tspan>
+            <text id="Like-a-diamond-in-th" filter="url(#filter-4)" sketch:type="MSTextLayer" x="35" y="128">
+                <tspan>Like </tspan><tspan>a </tspan><tspan>diamond </tspan><tspan>in </tspan><tspan>the </tspan><tspan>sky</tspan>
             </text>
-            <text id="Twinkle-twinkle-litt" filter="url(#filter-5)" sketch:type="MSTextLayer">
-                <tspan x="45" y="156">Twinkle twinkle little star</tspan>
+            <text id="Twinkle-twinkle-litt" filter="url(#filter-5)" sketch:type="MSTextLayer" x="45" y="156">
+                <tspan>Twinkle </tspan><tspan>twinkle </tspan><tspan>little </tspan><tspan>star</tspan>
             </text>
-            <text id="How-I-wonder-what-yo" filter="url(#filter-6)" sketch:type="MSTextLayer">
-                <tspan x="59" y="184">How I wonder what you are</tspan>
+            <text id="How-I-wonder-what-yo" filter="url(#filter-6)" sketch:type="MSTextLayer" x="59" y="184">
+                <tspan>How </tspan><tspan>I </tspan><tspan>wonder </tspan><tspan>what </tspan><tspan>you </tspan><tspan>are</tspan>
             </text>
         </g>
     </g>
