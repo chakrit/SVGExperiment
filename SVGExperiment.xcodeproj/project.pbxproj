@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		223B9F2E19A08A9F007E46E1 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223B9F2D19A08A9F007E46E1 /* RootViewController.swift */; };
+		223BE9E919A08E6000EE15E5 /* twinkle.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 223BE9E719A08E6000EE15E5 /* twinkle.mp3 */; };
+		223BE9EA19A08E6000EE15E5 /* twinkle.txt in Resources */ = {isa = PBXBuildFile; fileRef = 223BE9E819A08E6000EE15E5 /* twinkle.txt */; };
 		22DF71E919A089D80015ADAA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DF71E819A089D80015ADAA /* AppDelegate.swift */; };
 		22DF71EB19A089D80015ADAA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22DF71EA19A089D80015ADAA /* Images.xcassets */; };
 		BCE48D23445D4734BD3E3F8E /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D260C2650E5D41658A37C4B7 /* libPods.a */; };
@@ -15,6 +17,8 @@
 
 /* Begin PBXFileReference section */
 		223B9F2D19A08A9F007E46E1 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
+		223BE9E719A08E6000EE15E5 /* twinkle.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = twinkle.mp3; sourceTree = "<group>"; };
+		223BE9E819A08E6000EE15E5 /* twinkle.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = twinkle.txt; sourceTree = "<group>"; };
 		22DF71D319A089D80015ADAA /* SVGExperiment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SVGExperiment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		22DF71E719A089D80015ADAA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		22DF71E819A089D80015ADAA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -35,13 +39,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		223BE9E619A08E6000EE15E5 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				223BE9E719A08E6000EE15E5 /* twinkle.mp3 */,
+				223BE9E819A08E6000EE15E5 /* twinkle.txt */,
+			);
+			name = Assets;
+			path = ../Assets;
+			sourceTree = "<group>";
+		};
 		22DF71CA19A089D80015ADAA = {
 			isa = PBXGroup;
 			children = (
-				22DF71D419A089D80015ADAA /* Products */,
-				22DF71DC19A089D80015ADAA /* SVGExperiment */,
 				8B72709B410C42BE9E0ADDBD /* Pods.xcconfig */,
 				B896B9045A3E4AC3B6E0E64A /* Frameworks */,
+				22DF71D419A089D80015ADAA /* Products */,
+				22DF71DC19A089D80015ADAA /* SVGExperiment */,
 			);
 			sourceTree = "<group>";
 		};
@@ -59,6 +73,7 @@
 				22DF71E819A089D80015ADAA /* AppDelegate.swift */,
 				223B9F2D19A08A9F007E46E1 /* RootViewController.swift */,
 				22DF71EA19A089D80015ADAA /* Images.xcassets */,
+				223BE9E619A08E6000EE15E5 /* Assets */,
 				22DF71DD19A089D80015ADAA /* Supporting Files */,
 			);
 			path = SVGExperiment;
@@ -139,6 +154,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				22DF71EB19A089D80015ADAA /* Images.xcassets in Resources */,
+				223BE9EA19A08E6000EE15E5 /* twinkle.txt in Resources */,
+				223BE9E919A08E6000EE15E5 /* twinkle.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
