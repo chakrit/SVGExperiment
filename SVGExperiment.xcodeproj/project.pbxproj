@@ -10,7 +10,8 @@
 		223B9F2E19A08A9F007E46E1 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223B9F2D19A08A9F007E46E1 /* RootViewController.swift */; };
 		223BE9E919A08E6000EE15E5 /* twinkle.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 223BE9E719A08E6000EE15E5 /* twinkle.mp3 */; };
 		223BE9EA19A08E6000EE15E5 /* twinkle.txt in Resources */ = {isa = PBXBuildFile; fileRef = 223BE9E819A08E6000EE15E5 /* twinkle.txt */; };
-		2284937C19A12544001E3C99 /* Twinkle.svg in Resources */ = {isa = PBXBuildFile; fileRef = 2284937B19A12544001E3C99 /* Twinkle.svg */; };
+		2264CDD419A1CEC3005ED781 /* NSLayoutConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2264CDD319A1CEC3005ED781 /* NSLayoutConstraint.swift */; };
+		2284937C19A12544001E3C99 /* twinkle.svg in Resources */ = {isa = PBXBuildFile; fileRef = 2284937B19A12544001E3C99 /* twinkle.svg */; };
 		22DF71E919A089D80015ADAA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DF71E819A089D80015ADAA /* AppDelegate.swift */; };
 		22DF71EB19A089D80015ADAA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22DF71EA19A089D80015ADAA /* Images.xcassets */; };
 		BCE48D23445D4734BD3E3F8E /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D260C2650E5D41658A37C4B7 /* libPods.a */; };
@@ -20,7 +21,8 @@
 		223B9F2D19A08A9F007E46E1 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		223BE9E719A08E6000EE15E5 /* twinkle.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = twinkle.mp3; sourceTree = "<group>"; };
 		223BE9E819A08E6000EE15E5 /* twinkle.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = twinkle.txt; sourceTree = "<group>"; };
-		2284937B19A12544001E3C99 /* Twinkle.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Twinkle.svg; sourceTree = "<group>"; };
+		2264CDD319A1CEC3005ED781 /* NSLayoutConstraint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSLayoutConstraint.swift; sourceTree = "<group>"; };
+		2284937B19A12544001E3C99 /* twinkle.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = twinkle.svg; sourceTree = "<group>"; };
 		22BDB6F019A1235100F8485E /* SVGExperiment-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SVGExperiment-Bridging-Header.h"; sourceTree = "<group>"; };
 		22DF71D319A089D80015ADAA /* SVGExperiment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SVGExperiment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		22DF71E719A089D80015ADAA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -46,11 +48,19 @@
 			isa = PBXGroup;
 			children = (
 				223BE9E719A08E6000EE15E5 /* twinkle.mp3 */,
-				2284937B19A12544001E3C99 /* Twinkle.svg */,
+				2284937B19A12544001E3C99 /* twinkle.svg */,
 				223BE9E819A08E6000EE15E5 /* twinkle.txt */,
 			);
 			name = Assets;
 			path = ../Assets;
+			sourceTree = "<group>";
+		};
+		2264CDD219A1CEB5005ED781 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				2264CDD319A1CEC3005ED781 /* NSLayoutConstraint.swift */,
+			);
+			name = Extensions;
 			sourceTree = "<group>";
 		};
 		22DF71CA19A089D80015ADAA = {
@@ -79,6 +89,7 @@
 				223B9F2D19A08A9F007E46E1 /* RootViewController.swift */,
 				22DF71EA19A089D80015ADAA /* Images.xcassets */,
 				223BE9E619A08E6000EE15E5 /* Assets */,
+				2264CDD219A1CEB5005ED781 /* Extensions */,
 				22DF71DD19A089D80015ADAA /* Supporting Files */,
 			);
 			path = SVGExperiment;
@@ -162,7 +173,7 @@
 				22DF71EB19A089D80015ADAA /* Images.xcassets in Resources */,
 				223BE9EA19A08E6000EE15E5 /* twinkle.txt in Resources */,
 				223BE9E919A08E6000EE15E5 /* twinkle.mp3 in Resources */,
-				2284937C19A12544001E3C99 /* Twinkle.svg in Resources */,
+				2284937C19A12544001E3C99 /* twinkle.svg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -207,6 +218,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				223B9F2E19A08A9F007E46E1 /* RootViewController.swift in Sources */,
+				2264CDD419A1CEC3005ED781 /* NSLayoutConstraint.swift in Sources */,
 				22DF71E919A089D80015ADAA /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

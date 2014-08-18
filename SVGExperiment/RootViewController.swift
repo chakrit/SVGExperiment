@@ -25,19 +25,11 @@ class RootViewController: UIViewController {
         svg.image = SVGKImage(named: "Twinkle.svg")
 
         v.addSubview(svg)
-        v.addConstraint(NSLayoutConstraint(item: svg, attribute: .CenterX,
-            relatedBy: .Equal, toItem: v, attribute: .CenterX,
-            multiplier: 1.0, constant: 0.0))
-        v.addConstraint(NSLayoutConstraint(item: svg, attribute: .CenterY,
-            relatedBy: .Equal, toItem: v, attribute: .CenterY,
-            multiplier: 1.0, constant: 0.0))
-        svg.addConstraint(NSLayoutConstraint(item: svg, attribute: .Width,
-            relatedBy: .Equal, toItem: nil, attribute: .Width,
-            multiplier: 1.0, constant: contentSize.width))
-        svg.addConstraint(NSLayoutConstraint(item: svg, attribute: .Height,
-            relatedBy: .Equal, toItem: nil, attribute: .Height,
-            multiplier: 1.0, constant: contentSize.height))
-
+        v.addConstraint(NSLayoutConstraint(horizontalAlignItem: svg, withItem: v))
+        v.addConstraint(NSLayoutConstraint(verticalAlignItem: svg, withItem: v))
+        v.addConstraint(NSLayoutConstraint(item: svg, width: contentSize.width))
+        v.addConstraint(NSLayoutConstraint(item: svg, height: contentSize.height))
+        
         view = v
     }
 }
