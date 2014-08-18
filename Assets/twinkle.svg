@@ -69,48 +69,22 @@
         </g>
         <g id="Twinkle" sketch:type="MSLayerGroup" transform="translate(31.000000, 68.000000)" font-weight="normal" font-family="Chalkduster" line-spacing="29" letter-spacing="0.154838711" font-size="27" fill="#696969">
             <text id="Twinkle-Twinkle-litt" filter="url(#filter-1)" sketch:type="MSTextLayer" x="0" y="33">
-                <tspan lb:interval="8.160-9.576">Twinkle </tspan>
-                <tspan lb:interval="9.570-10.945">Twinkle </tspan>
-                <tspan lb:interval="11.000-12.285">little </tspan>
-                <tspan lb:interval="12.280-13.365">star</tspan>
+                <tspan lb:interval="8.160-9.576">Twinkle </tspan><tspan lb:interval="9.570-10.945">Twinkle </tspan><tspan lb:interval="11.000-12.285">little </tspan><tspan lb:interval="12.280-13.365">star</tspan>
             </text>
             <text id="How-I-wonder-what-yo" filter="url(#filter-2)" sketch:type="MSTextLayer" x="8" y="65">
-                <tspan lb:interval="13.885-14.640">How </tspan>
-                <tspan lb:interval="14.640-15.325">I </tspan>
-                <tspan lb:interval="15.320-16.748">wonder </tspan>
-                <tspan lb:interval="16.740-17.245">what </tspan>
-                <tspan lb:interval="17.240-18.040">you </tspan>
-                <tspan lb:interval="18.040-19.194">are</tspan>
+                <tspan lb:interval="13.885-14.640">How </tspan><tspan lb:interval="14.640-15.325">I </tspan><tspan lb:interval="15.320-16.748">wonder </tspan><tspan lb:interval="16.740-17.245">what </tspan><tspan lb:interval="17.240-18.040">you </tspan><tspan lb:interval="18.040-19.194">are</tspan>
             </text>
             <text id="Up-above-the-world-s" filter="url(#filter-3)" sketch:type="MSTextLayer" x="22" y="96">
-                <tspan lb:interval="19.542-20.360">Up </tspan>
-                <tspan lb:interval="20.360-21.737">above </tspan>
-                <tspan lb:interval="21.730-22.462">the </tspan>
-                <tspan lb:interval="22.460-23.074">world </tspan>
-                <tspan lb:interval="23.070-23.885">so </tspan>
-                <tspan lb:interval="23.880-24.742">high</tspan>
+                <tspan lb:interval="19.542-20.360">Up </tspan><tspan lb:interval="20.360-21.737">above </tspan><tspan lb:interval="21.730-22.462">the </tspan><tspan lb:interval="22.460-23.074">world </tspan><tspan lb:interval="23.070-23.885">so </tspan><tspan lb:interval="23.880-24.742">high</tspan>
             </text>
             <text id="Like-a-diamond-in-th" filter="url(#filter-4)" sketch:type="MSTextLayer" x="35" y="128">
-                <tspan lb:interval="25.268-25.977">Like </tspan>
-                <tspan lb:interval="25.988-26.691">a </tspan>
-                <tspan lb:interval="26.690-28.131">diamond </tspan>
-                <tspan lb:interval="28.130-28.880">in </tspan>
-                <tspan lb:interval="28.880-29.360">the </tspan>
-                <tspan lb:interval="29.360-30.925">sky</tspan>
+                <tspan lb:interval="25.268-25.977">Like </tspan><tspan lb:interval="25.988-26.691">a </tspan><tspan lb:interval="26.690-28.131">diamond </tspan><tspan lb:interval="28.130-28.880">in </tspan><tspan lb:interval="28.880-29.360">the </tspan><tspan lb:interval="29.360-30.925">sky</tspan>
             </text>
             <text id="Twinkle-twinkle-litt" filter="url(#filter-5)" sketch:type="MSTextLayer" x="45" y="156">
-                <tspan lb:interval="30.920-32.362">Twinkle </tspan>
-                <tspan lb:interval="32.362-33.810">twinkle </tspan>
-                <tspan lb:interval="33.810-35.097">little </tspan>
-                <tspan lb:interval="35.090-36.154">star</tspan>
+                <tspan lb:interval="30.920-32.362">Twinkle </tspan><tspan lb:interval="32.362-33.810">twinkle </tspan><tspan lb:interval="33.810-35.097">little </tspan><tspan lb:interval="35.090-36.154">star</tspan>
             </text>
             <text id="How-I-wonder-what-yo" filter="url(#filter-6)" sketch:type="MSTextLayer" x="59" y="184">
-                <tspan lb:interval="36.634-37.400">How </tspan>
-                <tspan lb:interval="37.400-38.108">I </tspan>
-                <tspan lb:interval="38.100-39.514">wonder </tspan>
-                <tspan lb:interval="39.510-39.994">what </tspan>
-                <tspan lb:interval="39.990-40.805">you </tspan>
-                <tspan lb:interval="40.931-41.451">are</tspan>
+                <tspan lb:interval="36.634-37.400">How </tspan><tspan lb:interval="37.400-38.108">I </tspan><tspan lb:interval="38.100-39.514">wonder </tspan><tspan lb:interval="39.510-39.994">what </tspan><tspan lb:interval="39.990-40.805">you </tspan><tspan lb:interval="40.931-41.451">are</tspan>
             </text>
         </g>
     </g>
