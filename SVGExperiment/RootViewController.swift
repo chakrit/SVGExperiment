@@ -1,8 +1,25 @@
 import UIKit
+import QuartzCore
 
-class RootViewController: UIViewController {
+class RootViewController: UIViewController, AudioManagerDelegate {
     typealias ImageView = SVGKLayeredImageView
-
+    
+    private let _audioManager = AudioManager()
+    
+    private var _image: SVGKImage! = nil
+    private var _interactiveElements: [Element] = []
+    private var _elementIntervals: [Element: AudioManager.IntervalType] = [:]
+    
+    
+    convenience override init() { self.init(nibName: nil, bundle: nil) }
+    required init(coder aDecoder: NSCoder!) { super.init(coder: aDecoder) }
+    
+    override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        _audioManager.delegate = self
+    }
+    
+    
     override func loadView() {
         var screenSize = UIScreen.mainScreen().bounds.size
         if screenSize.height > screenSize.width {
@@ -14,20 +31,90 @@ class RootViewController: UIViewController {
         v.autoresizingMask = .FlexibleWidth | .FlexibleHeight
         v.backgroundColor = .whiteColor()
 
-        let image = SVGKImage(named: "twinkle.svg")
+        if _image == nil { loadImage() }
+        let size = _image.size
         
-        let svgFrame = CGRect(origin: CGPointZero, size: image.size)
+        let svgFrame = CGRect(origin: CGPointZero, size: size)
         let svg = ImageView(frame: svgFrame)
         svg.setTranslatesAutoresizingMaskIntoConstraints(false)
         svg.backgroundColor = .whiteColor()
         svg.contentMode = .ScaleAspectFit
-        svg.image = image
+        svg.image = _image
         v.addSubview(svg)
 
         v.addConstraint(NSLayoutConstraint(horizontalAlignItem: svg, withItem: v))
         v.addConstraint(NSLayoutConstraint(verticalAlignItem: svg, withItem: v))
-        v.addConstraint(NSLayoutConstraint(item: svg, width: image.size.width))
-        v.addConstraint(NSLayoutConstraint(item: svg, height: image.size.height))
+        v.addConstraint(NSLayoutConstraint(item: svg, width: size.width))
+        v.addConstraint(NSLayoutConstraint(item: svg, height: size.height))
         view = v
+    }
+    
+    func loadImage() {
+        if _image != nil { return }
+        _image = SVGKImage(named: "twinkle.svg")
+        
+        func parseInterval(rawStr: String) -> AudioManager.IntervalType {
+            let components = rawStr.componentsSeparatedByString("-")
+            var start = Double(0.0), end = Double(0.0)
+            NSScanner.localizedScannerWithString(components[0]).scanDouble(&start)
+            NSScanner.localizedScannerWithString(components[1]).scanDouble(&end)
+            
+            return start...end
+        }
+        
+        let elements = _image.DOMTree.getElementsByTagName("*")
+        _interactiveElements = []
+        _elementIntervals = [:]
+        _audioManager.bookmarks = []
+        
+        for var i = 0; i < elements.length; i++ {
+            let element = elements.item(Int32(i)) as Element
+            if element.hasAttribute("interval") {
+                let interval = parseInterval(element.getAttribute("interval"))
+                _elementIntervals[element] = interval
+                _interactiveElements += [element]
+                _audioManager.bookmarks += [interval.start]
+            }
+        }
+    }
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        _audioManager.play("twinkle.mp3")
+    }
+    
+    
+    // MARK: AudioManagerDelegate
+    func audioManager(manager: AudioManager, didReachBookmark bookmark: AudioManager.TimeType, ofAudio audio: String) {
+        dump((bookmark, audio), name: "didReachBookmark:ofAudio:")
+        let svgView = view.subviews[0] as SVGKImageView
+        
+        let t: ClosedInterval<AudioBase.TimeType>? = nil
+        var changed = false
+        for (element, interval) in _elementIntervals {
+            if interval ~= bookmark {
+                // TODO: Doesn't work.
+                let anim = CABasicAnimation(keyPath: "opacity")
+                anim.fromValue = NSNumber(float: 0.0)
+                anim.toValue = NSNumber(float: 1.0)
+                anim.duration = 0.5
+                
+                let layer = _image.layerWithIdentifier(element.getAttribute("id")) ??
+                    _image.layerWithIdentifier((element.parentNode as Element).getAttribute("id"))
+                layer.addAnimation(anim, forKey: "opacity")
+                changed = true
+            }
+        }
+        
+        if changed { svgView.setNeedsDisplay() }
+    }
+    
+    func audioManager(manager: AudioManager, didBeginPlayingAudio audio: String, interval: AudioManager.IntervalType?) {
+        dump((audio, interval), name: "didBeginPlayingAudio:interval:")
+    }
+    
+    func audioManager(manager: AudioManager, didStopPlayingAudio audio: String) {
+        dump(audio, name: "didStopPlayingAudio:")
     }
 }
