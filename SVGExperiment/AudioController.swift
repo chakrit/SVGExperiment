@@ -62,8 +62,6 @@ class AudioController: AudioBase {
         _playerItem = item
         
         _player = AVPlayer(playerItem: _playerItem)
-        _player?.rate = 4.0
-        
         _playerTimeObserver = _player?.addPeriodicTimeObserverForInterval(CMTime.fromInterval(0.10),
             queue: dispatch_get_main_queue(),
             usingBlock: playerDidObserveTime)

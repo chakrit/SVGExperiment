@@ -94,15 +94,18 @@ class RootViewController: UIViewController, AudioManagerDelegate {
         var changed = false
         for (element, interval) in _elementIntervals {
             if interval ~= bookmark {
-                // TODO: Doesn't work.
-                let anim = CABasicAnimation(keyPath: "opacity")
-                anim.fromValue = NSNumber(float: 0.0)
-                anim.toValue = NSNumber(float: 1.0)
-                anim.duration = 0.5
-                
                 let layer = _image.layerWithIdentifier(element.getAttribute("id")) ??
                     _image.layerWithIdentifier((element.parentNode as Element).getAttribute("id"))
-                layer.addAnimation(anim, forKey: "opacity")
+                
+                let nudgeUp = CGPoint(x: layer.position.x, y: layer.position.y - 20)
+                let anim = CABasicAnimation(keyPath: "position")
+                anim.fromValue = NSValue(CGPoint: layer.position)
+                anim.toValue = NSValue(CGPoint: nudgeUp)
+                anim.autoreverses = true
+                anim.duration = (interval.end - interval.start) * 0.4
+                anim.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
+                
+                layer.addAnimation(anim, forKey: "position")
                 changed = true
             }
         }
