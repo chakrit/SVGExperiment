@@ -64,7 +64,7 @@ class AudioController: AudioBase {
 
 
     private func playItem(item: AVPlayerItem) {
-        _player = AVPlayer(playerItem: _item)
+        _player = AVPlayer(playerItem: item)
         _timeObserver = _player?.addPeriodicTimeObserverForInterval(CMTime.fromInterval(0.10),
             queue: dispatch_get_main_queue(),
             usingBlock: playerDidObserveTime)
