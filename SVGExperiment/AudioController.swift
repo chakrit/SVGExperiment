@@ -2,7 +2,7 @@ import AVFoundation
 import CoreMedia
 
 @objc protocol AudioControllerDelegate: class {
-    optional func audioController(controller: AudioController, didReachBookmark bookmark: AudioController.TimeType)
+    optional func audioController(controller: AudioController, didReachBookmark bookmark: AudioTime)
 }
 
 private extension CMTime {
@@ -22,12 +22,12 @@ class AudioController: AudioBase {
     private var _statusObserver: BlockObserver! = nil
 
     private let _asset: AVAsset
-    private var _nextBookmarkIndex: Array<TimeType>.Index = 0
+    private var _nextBookmarkIndex: Array<AudioTime>.Index = 0
 
     let audio: String
 
     weak var delegate: AudioControllerDelegate? = nil
-    var bookmarks: [TimeType] = []
+    var bookmarks: [AudioTime] = []
 
 
     init(audio: String) {
@@ -38,7 +38,7 @@ class AudioController: AudioBase {
     }
     
 
-    func play(range: IntervalType) {
+    func play(range: AudioInterval) {
         stop()
         
         let item = AVPlayerItem(asset: _asset)

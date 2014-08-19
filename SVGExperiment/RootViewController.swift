@@ -8,7 +8,7 @@ class RootViewController: UIViewController, AudioManagerDelegate {
     
     private var _image: SVGKImage! = nil
     private var _interactiveElements: [Element] = []
-    private var _elementIntervals: [Element: AudioManager.IntervalType] = [:]
+    private var _elementIntervals: [Element: AudioInterval] = [:]
     
     
     convenience override init() { self.init(nibName: nil, bundle: nil) }
@@ -53,7 +53,7 @@ class RootViewController: UIViewController, AudioManagerDelegate {
         if _image != nil { return }
         _image = SVGKImage(named: "twinkle.svg")
         
-        func parseInterval(rawStr: String) -> AudioManager.IntervalType {
+        func parseInterval(rawStr: String) -> AudioInterval {
             let components = rawStr.componentsSeparatedByString("-")
             var start = Double(0.0), end = Double(0.0)
             NSScanner.localizedScannerWithString(components[0]).scanDouble(&start)
@@ -86,11 +86,11 @@ class RootViewController: UIViewController, AudioManagerDelegate {
     
     
     // MARK: AudioManagerDelegate
-    func audioManager(manager: AudioManager, didReachBookmark bookmark: AudioManager.TimeType, ofAudio audio: String) {
+    func audioManager(manager: AudioManager, didReachBookmark bookmark: AudioTime, ofAudio audio: String) {
         dump((bookmark, audio), name: "didReachBookmark:ofAudio:")
         let svgView = view.subviews[0] as SVGKImageView
         
-        let t: ClosedInterval<AudioBase.TimeType>? = nil
+        let t: AudioInterval? = nil
         var changed = false
         for (element, interval) in _elementIntervals {
             if interval ~= bookmark {
@@ -113,7 +113,7 @@ class RootViewController: UIViewController, AudioManagerDelegate {
         if changed { svgView.setNeedsDisplay() }
     }
     
-    func audioManager(manager: AudioManager, didBeginPlayingAudio audio: String, interval: AudioManager.IntervalType?) {
+    func audioManager(manager: AudioManager, didBeginPlayingAudio audio: String, interval: AudioInterval?) {
         dump((audio, interval), name: "didBeginPlayingAudio:interval:")
     }
     

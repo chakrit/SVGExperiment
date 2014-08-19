@@ -1,20 +1,20 @@
 import Foundation
 
 @objc protocol AudioManagerDelegate: class {
-    optional func audioManager(manager: AudioManager, didReachBookmark bookmark: AudioManager.TimeType, ofAudio audio: String)
+    optional func audioManager(manager: AudioManager, didReachBookmark bookmark: AudioTime, ofAudio audio: String)
     optional func audioManager(manager: AudioManager, didBeginPlayingAudio audio: String)
     optional func audioManager(manager: AudioManager, didStopPlayingAudio audio: String)
 }
 
 class AudioManager: AudioBase, AudioControllerDelegate {
     private var _controllers: [String: AudioController] = Dictionary(minimumCapacity: 5)
-    private var _bookmarks: [AudioManager.TimeType] = []
+    private var _bookmarks: [AudioTime] = []
     
     private(set) var selectedAudio: String? = nil
-    private(set) var selectedTimeInterval: IntervalType? = nil
+    private(set) var selectedTimeInterval: AudioInterval? = nil
     
     weak var delegate: AudioManagerDelegate? = nil
-    var bookmarks: [AudioManager.TimeType] {
+    var bookmarks: [AudioTime] {
         get { return _bookmarks }
         set {
             var sorted = Array(newValue)
@@ -41,7 +41,7 @@ class AudioManager: AudioBase, AudioControllerDelegate {
     }
     
     
-    func play(audio: String, inRange range: IntervalType? = nil) {
+    func play(audio: String, inRange range: AudioInterval? = nil) {
         if let previousController = selectedAudioController {
             previousController.stop()
             previousController.delegate = nil
@@ -71,7 +71,7 @@ class AudioManager: AudioBase, AudioControllerDelegate {
     
     
     // MARK: AudioControllerDelegate
-    func audioController(controller: AudioController, didReachBookmark bookmark: AudioBase.TimeType) {
+    func audioController(controller: AudioController, didReachBookmark bookmark: AudioTime) {
         delegate?.audioManager?(self, didReachBookmark: bookmark, ofAudio: controller.audio)
     }
 }
