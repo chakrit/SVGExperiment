@@ -2,7 +2,7 @@ import AVFoundation
 import CoreMedia
 
 @objc protocol AudioControllerDelegate: class {
-    func audioController(controller: AudioController, didReachBookmark bookmark: AudioController.TimeType)
+    optional func audioController(controller: AudioController, didReachBookmark bookmark: AudioController.TimeType)
 }
 
 private extension CMTime {
@@ -17,38 +17,33 @@ private extension CMTime {
 
 class AudioController: AudioBase {
     private var _player: AVPlayer? = nil
-    private var _playerItem: AVPlayerItem? = nil
-    private var _playerTimeObserver: AnyObject! = nil
-    private var _itemStatusObserver: BlockObserver! = nil
-    
+    private var _item: AVPlayerItem? = nil
+    private var _timeObserver: AnyObject! = nil
+    private var _statusObserver: BlockObserver! = nil
+
     private let _asset: AVAsset
-    private var _bookmarks: [TimeType] = []
     private var _nextBookmarkIndex: Array<TimeType>.Index = 0
 
-    weak var delegate: AudioControllerDelegate?
-    var bookmarks: [TimeType] { return _bookmarks }
     let audio: String
-    
+
+    weak var delegate: AudioControllerDelegate? = nil
+    var bookmarks: [TimeType] = []
+
+
     init(audio: String) {
         self.audio = audio
-        
-        let bundle = NSBundle.mainBundle()
-        let path = bundle.pathForResource(audio, ofType: "")
+
+        let path = NSBundle.mainBundle().pathForResource(audio, ofType: "")
         _asset = AVURLAsset(URL: NSURL.fileURLWithPath(path), options: [:])
     }
     
-    func addBookmark(time: TimeType) { _bookmarks.append(time) }
-    func clearBookmarks() { _bookmarks.removeAll(keepCapacity: true) }
-    
-    
-    func play(range: IntervalType) { play(startAt: range.start, playUntil: range.end) }
-    
-    func play(startAt startTime: TimeType, playUntil endTime: TimeType) {
+
+    func play(range: IntervalType) {
         stop()
         
         let item = AVPlayerItem(asset: _asset)
-        item.seekToTime(CMTime.fromInterval(startTime))
-        item.forwardPlaybackEndTime = CMTime.fromInterval(endTime)
+        item.seekToTime(CMTime.fromInterval(range.start))
+        item.forwardPlaybackEndTime = CMTime.fromInterval(range.end)
         playItem(item)
     }
     
@@ -56,43 +51,52 @@ class AudioController: AudioBase {
         stop()
         playItem(AVPlayerItem(asset: _asset))
     }
-    
+
+    func stop() {
+        _player?.pause()
+        _player?.removeTimeObserver(_timeObserver)
+        _player = nil
+        
+        _item = nil
+        _item?.removeObserver(_statusObserver, forKeyPath: "status")
+        _nextBookmarkIndex = 0
+    }
+
 
     private func playItem(item: AVPlayerItem) {
-        _playerItem = item
-        
-        _player = AVPlayer(playerItem: _playerItem)
-        _playerTimeObserver = _player?.addPeriodicTimeObserverForInterval(CMTime.fromInterval(0.10),
+        _player = AVPlayer(playerItem: _item)
+        _timeObserver = _player?.addPeriodicTimeObserverForInterval(CMTime.fromInterval(0.10),
             queue: dispatch_get_main_queue(),
             usingBlock: playerDidObserveTime)
 
-        if _playerItem!.status == .ReadyToPlay {
+        _item = item
+        if _item!.status == .ReadyToPlay {
             _player!.play()
 
         } else {
-            _itemStatusObserver = _playerItem!.observe("status", usingBlock: itemStatusDidChange)
+            _statusObserver = _item!.observe("status", usingBlock: itemStatusDidChange)
         }
-    }
-    
-    func stop() {
-        _player?.pause()
-        _player?.removeTimeObserver(_playerTimeObserver)
-        _player = nil
-        
-        _playerItem = nil
-        _nextBookmarkIndex = 0
     }
     
 
     // MARK: KVO
     private func itemStatusDidChange() {
-        if let pi = _playerItem? {
-            if pi.status == .ReadyToPlay {
-                // TODO: Check if we still wants to play (user hasn't tapped anything else in the meanwhile)
-                pi.removeObserver(_itemStatusObserver, forKeyPath: "status")
-                _player?.play()
-            }
+        if _item == nil { return }
+
+        // TODO: Delegate methods for audio load/fail status? We don't need this for now but we
+        //   might want to have warnings when the content is malformed so it's easier to debug the
+        //   book content.
+        switch _item!.status {
+        case .ReadyToPlay: _player?.play()
+        case .Failed: dump(_item!, name: "failed to play item.")
+
+        case .Unknown:
+            dump(_item!, name: "item has unknown status.")
+            return
         }
+
+        _item!.removeObserver(_statusObserver, forKeyPath: "status")
+        _statusObserver = nil
     }
 
     // TODO: We might be able to replace this with a doubly linked list or something where the next
@@ -100,11 +104,11 @@ class AudioController: AudioBase {
     //   future.
     private func playerDidObserveTime(time: CMTime) {
         let interval = time.toInterval()
-        if _nextBookmarkIndex >= _bookmarks.count { return }
+        if _nextBookmarkIndex >= bookmarks.count { return }
 
-        let bookmark = _bookmarks[_nextBookmarkIndex]
+        let bookmark = bookmarks[_nextBookmarkIndex]
         if interval > bookmark {
-            delegate?.audioController(self, didReachBookmark: bookmark)
+            delegate?.audioController?(self, didReachBookmark: bookmark)
             _nextBookmarkIndex += 1
         }
     }

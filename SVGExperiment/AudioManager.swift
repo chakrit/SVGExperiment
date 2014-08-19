@@ -1,21 +1,27 @@
 import Foundation
 
 @objc protocol AudioManagerDelegate: class {
-    func audioManager(manager: AudioManager, didReachBookmark bookmark: AudioManager.TimeType, ofAudio audio: String)
-    
-    // TODO: Can't use AudioManager.IntervalType in @objc protocols.
-    // func audioManager(manager: AudioManager, didBeginPlayingAudio audio: String, interval: AudioManager.IntervalType!)
-    func audioManager(manager: AudioManager, didStopPlayingAudio audio: String)
+    optional func audioManager(manager: AudioManager, didReachBookmark bookmark: AudioManager.TimeType, ofAudio audio: String)
+    optional func audioManager(manager: AudioManager, didBeginPlayingAudio audio: String)
+    optional func audioManager(manager: AudioManager, didStopPlayingAudio audio: String)
 }
 
 class AudioManager: AudioBase, AudioControllerDelegate {
     private var _controllers: [String: AudioController] = Dictionary(minimumCapacity: 5)
+    private var _bookmarks: [AudioManager.TimeType] = []
     
     private(set) var selectedAudio: String? = nil
     private(set) var selectedTimeInterval: IntervalType? = nil
     
     weak var delegate: AudioManagerDelegate? = nil
-    var bookmarks: [AudioManager.TimeType] = []
+    var bookmarks: [AudioManager.TimeType] {
+        get { return _bookmarks }
+        set {
+            var sorted = Array(newValue)
+            sorted.sort { $0 < $1 }
+            _bookmarks = sorted
+        }
+    }
     
     var selectedAudioController: AudioController? {
         return selectedAudio == nil ? nil : _controllers[selectedAudio!]
@@ -41,16 +47,10 @@ class AudioManager: AudioBase, AudioControllerDelegate {
             previousController.delegate = nil
         }
         
-        var sortedBookmarks = Array(bookmarks)
-        sortedBookmarks.sort { $0 < $1 }
-        
         let controller = self[audio]
-        controller.clearBookmarks()
-        for bookmark in sortedBookmarks {
-            controller.addBookmark(bookmark)
-        }
-        
+        controller.bookmarks = _bookmarks
         controller.delegate = self
+
         if let r = range {
             controller.play(r)
         } else {
@@ -59,22 +59,19 @@ class AudioManager: AudioBase, AudioControllerDelegate {
         
         selectedAudio = audio
         selectedTimeInterval = range
-        if let d = delegate {
-            // TODO: Can't supply AudioManager.IntervalType to @objc protocols.
-            // d.audioManager(self, didBeginPlayingAudio: audio, interval: range)
-        }
+        delegate?.audioManager?(self, didBeginPlayingAudio: audio)
     }
     
     func stop() {
         if let controller = selectedAudioController {
             controller.stop()
-            delegate?.audioManager(self, didStopPlayingAudio: controller.audio)
+            delegate?.audioManager?(self, didStopPlayingAudio: controller.audio)
         }
     }
     
     
     // MARK: AudioControllerDelegate
     func audioController(controller: AudioController, didReachBookmark bookmark: AudioBase.TimeType) {
-        delegate?.audioManager(self, didReachBookmark: bookmark, ofAudio: controller.audio)
+        delegate?.audioManager?(self, didReachBookmark: bookmark, ofAudio: controller.audio)
     }
 }
