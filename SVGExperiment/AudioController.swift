@@ -33,8 +33,12 @@ class AudioController: AudioBase {
     init(audio: String) {
         self.audio = audio
 
-        let path = NSBundle.mainBundle().pathForResource(audio, ofType: "")
-        _asset = AVURLAsset(URL: NSURL.fileURLWithPath(path), options: [:])
+        if let path = NSBundle.mainBundle().pathForResource(audio, ofType: "") {
+            _asset = AVURLAsset(URL: NSURL.fileURLWithPath(path), options: [:])
+        } else {
+            dump(audio, name: "audio")
+            fatalError("failed to load audio.")
+        }
     }
     
 
@@ -64,7 +68,7 @@ class AudioController: AudioBase {
 
 
     private func playItem(item: AVPlayerItem) {
-        _player = AVPlayer(playerItem: _item)
+        _player = AVPlayer(playerItem: item)
         _timeObserver = _player?.addPeriodicTimeObserverForInterval(CMTime.fromInterval(0.10),
             queue: dispatch_get_main_queue(),
             usingBlock: playerDidObserveTime)

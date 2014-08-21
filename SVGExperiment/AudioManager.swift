@@ -42,11 +42,8 @@ class AudioManager: AudioBase, AudioControllerDelegate {
     
     
     func play(audio: String, inRange range: AudioInterval? = nil) {
-        if let previousController = selectedAudioController {
-            previousController.stop()
-            previousController.delegate = nil
-        }
-        
+        stop()
+
         let controller = self[audio]
         controller.bookmarks = _bookmarks
         controller.delegate = self

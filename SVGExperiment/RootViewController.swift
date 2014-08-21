@@ -12,7 +12,7 @@ class RootViewController: UIViewController, AudioManagerDelegate {
     
     
     convenience override init() { self.init(nibName: nil, bundle: nil) }
-    required init(coder aDecoder: NSCoder!) { super.init(coder: aDecoder) }
+    required init(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
     
     override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -50,32 +50,24 @@ class RootViewController: UIViewController, AudioManagerDelegate {
     }
     
     func loadImage() {
-        if _image != nil { return }
-        _image = SVGKImage(named: "twinkle.svg")
-        
-        func parseInterval(rawStr: String) -> AudioInterval {
-            let components = rawStr.componentsSeparatedByString("-")
-            var start = Double(0.0), end = Double(0.0)
-            NSScanner.localizedScannerWithString(components[0]).scanDouble(&start)
-            NSScanner.localizedScannerWithString(components[1]).scanDouble(&end)
-            
-            return start...end
-        }
-        
-        let elements = _image.DOMTree.getElementsByTagName("*")
-        _interactiveElements = []
-        _elementIntervals = [:]
-        _audioManager.bookmarks = []
-        
-        for var i = 0; i < elements.length; i++ {
-            let element = elements.item(Int32(i)) as Element
-            if element.hasAttribute("interval") {
-                let interval = parseInterval(element.getAttribute("interval"))
-                _elementIntervals[element] = interval
-                _interactiveElements += [element]
-                _audioManager.bookmarks += [interval.start]
-            }
-        }
+//        if _image != nil { return }
+//        _image = SVGKImage(named: "twinkle.svg")
+//        
+//        
+//        let elements = _image.DOMTree.getElementsByTagName("*")
+//        _interactiveElements = []
+//        _elementIntervals = [:]
+//        _audioManager.bookmarks = []
+//        
+//        for var i = 0; i < elements.length; i++ {
+//            let element = elements.item(Int32(i)) as Element
+//            if element.hasAttribute("interval") {
+//                let interval = parseInterval(element.getAttribute("interval"))
+//                _elementIntervals[element] = interval
+//                _interactiveElements += [element]
+//                _audioManager.bookmarks += [interval.start]
+//            }
+//        }
     }
     
     
@@ -90,27 +82,22 @@ class RootViewController: UIViewController, AudioManagerDelegate {
         dump((bookmark, audio), name: "didReachBookmark:ofAudio:")
         let svgView = view.subviews[0] as SVGKImageView
         
-        let t: AudioInterval? = nil
-        var changed = false
         for (element, interval) in _elementIntervals {
             if interval ~= bookmark {
-                let layer = _image.layerWithIdentifier(element.getAttribute("id")) ??
-                    _image.layerWithIdentifier((element.parentNode as Element).getAttribute("id"))
-                
-                let nudgeUp = CGPoint(x: layer.position.x, y: layer.position.y - 20)
-                let anim = CABasicAnimation(keyPath: "position")
-                anim.fromValue = NSValue(CGPoint: layer.position)
-                anim.toValue = NSValue(CGPoint: nudgeUp)
-                anim.autoreverses = true
-                anim.duration = (interval.end - interval.start) * 0.4
-                anim.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
-                
-                layer.addAnimation(anim, forKey: "position")
-                changed = true
+//                let layer = _image.layerWithIdentifier(element.getAttribute("id")) ??
+//                    _image.layerWithIdentifier((element.parentNode as Element).getAttribute("id"))
+//                
+//                let nudgeUp = CGPoint(x: layer.position.x, y: layer.position.y - 20)
+//                let anim = CABasicAnimation(keyPath: "position")
+//                anim.fromValue = NSValue(CGPoint: layer.position)
+//                anim.toValue = NSValue(CGPoint: nudgeUp)
+//                anim.autoreverses = true
+//                anim.duration = (interval.end - interval.start) * 0.4
+//                anim.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
+//                
+//                layer.addAnimation(anim, forKey: "position")
             }
         }
-        
-        if changed { svgView.setNeedsDisplay() }
     }
     
     func audioManager(manager: AudioManager, didBeginPlayingAudio audio: String, interval: AudioInterval?) {
