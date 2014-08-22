@@ -1,27 +1,31 @@
 import Foundation
 
-@objc protocol AudioManagerDelegate: class {
-    optional func audioManager(manager: AudioManager, didReachBookmark bookmark: AudioTime, ofAudio audio: String)
-    optional func audioManager(manager: AudioManager, didBeginPlayingAudio audio: String)
-    optional func audioManager(manager: AudioManager, didStopPlayingAudio audio: String)
-}
-
-class AudioManager: AudioBase, AudioControllerDelegate {
+class AudioManager: AudioBase, PlayheadController {
     private var _controllers: [String: AudioController] = Dictionary(minimumCapacity: 5)
-    private var _bookmarks: [AudioTime] = []
+    private var _checkpoints: [Playhead] = []
+    private var _playhead: Playhead = Playhead()
     
     private(set) var selectedAudio: String? = nil
-    private(set) var selectedTimeInterval: AudioInterval? = nil
     
-    weak var delegate: AudioManagerDelegate? = nil
-    var bookmarks: [AudioTime] {
-        get { return _bookmarks }
+    var onPlayheadChanged: OnPlayheadChangeHandler?
+    var playhead: Playhead {
+        get { return _playhead }
+        set { play(newValue) }
+    }
+    
+    var checkpoints: [Playhead] {
+        get { return _checkpoints }
         set {
             var sorted = Array(newValue)
             sorted.sort { $0 < $1 }
-            _bookmarks = sorted
+            
+            stop()
+            _checkpoints = newValue
         }
     }
+    
+    var canPlay: Bool { return true }
+    var canPause: Bool { return true }
     
     var selectedAudioController: AudioController? {
         return selectedAudio == nil ? nil : _controllers[selectedAudio!]
@@ -33,7 +37,7 @@ class AudioManager: AudioBase, AudioControllerDelegate {
         }
             
         let controller = AudioController(audio: audio)
-        controller.delegate = self
+        controller.onCurrentTimeUpdated = controllerDidUpdateCurrentTime
             
         let cxx = _controllers[audio]
         _controllers[audio] = controller
@@ -41,34 +45,43 @@ class AudioManager: AudioBase, AudioControllerDelegate {
     }
     
     
-    func play(audio: String, inRange range: AudioInterval? = nil) {
+    func play() { play(_playhead) }
+        
+    func play(playhead: Playhead) {
         stop()
-
-        let controller = self[audio]
-        controller.bookmarks = _bookmarks
-        controller.delegate = self
-
-        if let r = range {
-            controller.play(r)
+        
+        let controller = self[playhead.audio]
+        controller.onCurrentTimeUpdated = controllerDidUpdateCurrentTime
+        
+        if playhead.stopTime == 0 {
+            controller.play(playhead.time)
         } else {
-            controller.playFromBeginning()
+            controller.play(playhead.time...playhead.stopTime)
         }
         
-        selectedAudio = audio
-        selectedTimeInterval = range
-        delegate?.audioManager?(self, didBeginPlayingAudio: audio)
+        selectedAudio = playhead.audio
+        
+        _playhead = playhead
+        onPlayheadChanged?()
     }
+        
+    func pause() { stop() }
     
     func stop() {
         if let controller = selectedAudioController {
             controller.stop()
-            delegate?.audioManager?(self, didStopPlayingAudio: controller.audio)
+            controller.onCurrentTimeUpdated = nil
         }
     }
     
     
-    // MARK: AudioControllerDelegate
-    func audioController(controller: AudioController, didReachBookmark bookmark: AudioTime) {
-        delegate?.audioManager?(self, didReachBookmark: bookmark, ofAudio: controller.audio)
+    // MARK: KVO
+    func controllerDidUpdateCurrentTime() {
+        if let controller = selectedAudioController {
+            _playhead = Playhead(audio: controller.audio,
+                time: controller.currentTime,
+                stopTime: _playhead.stopTime)
+            onPlayheadChanged?()
+        }
     }
 }

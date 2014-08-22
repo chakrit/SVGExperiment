@@ -15,13 +15,15 @@
 		2264CDD919A1DD01005ED781 /* AudioController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2264CDD619A1DD01005ED781 /* AudioController.swift */; };
 		2264CDDA19A1DD01005ED781 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2264CDD719A1DD01005ED781 /* AudioManager.swift */; };
 		2264CDDE19A1DD6B005ED781 /* BlockObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2264CDDD19A1DD6B005ED781 /* BlockObserver.swift */; };
-		2264CDE019A202FE005ED781 /* LanguageBookParserExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2264CDDF19A202FE005ED781 /* LanguageBookParserExtension.swift */; };
 		2284937C19A12544001E3C99 /* twinkle.svg in Resources */ = {isa = PBXBuildFile; fileRef = 2284937B19A12544001E3C99 /* twinkle.svg */; };
 		22A360B419A5ED8700585850 /* LayerData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A360B319A5ED8700585850 /* LayerData.swift */; };
+		22A360B819A6403D00585850 /* PlayheadController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A360B719A6403D00585850 /* PlayheadController.swift */; };
 		22B1AAFC19A3DA2E00461FB5 /* SVGController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B1AAFB19A3DA2E00461FB5 /* SVGController.swift */; };
-		22B66FD819A4A6960049F522 /* AudioScope.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B66FD719A4A6960049F522 /* AudioScope.swift */; };
+		22B66FD819A4A6960049F522 /* Playhead.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B66FD719A4A6960049F522 /* Playhead.swift */; };
 		22DF71E919A089D80015ADAA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DF71E819A089D80015ADAA /* AppDelegate.swift */; };
 		22DF71EB19A089D80015ADAA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22DF71EA19A089D80015ADAA /* Images.xcassets */; };
+		22EEE0DF19A74A7C0039280E /* SliderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EEE0DE19A74A7C0039280E /* SliderController.swift */; };
+		22EEE0E119A752800039280E /* PlayheadSynchronizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EEE0E019A752800039280E /* PlayheadSynchronizer.swift */; };
 		BCE48D23445D4734BD3E3F8E /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D260C2650E5D41658A37C4B7 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -34,16 +36,18 @@
 		2264CDD619A1DD01005ED781 /* AudioController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioController.swift; sourceTree = "<group>"; };
 		2264CDD719A1DD01005ED781 /* AudioManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
 		2264CDDD19A1DD6B005ED781 /* BlockObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockObserver.swift; sourceTree = "<group>"; };
-		2264CDDF19A202FE005ED781 /* LanguageBookParserExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LanguageBookParserExtension.swift; sourceTree = "<group>"; };
 		2284937B19A12544001E3C99 /* twinkle.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = twinkle.svg; sourceTree = "<group>"; };
 		22A360B319A5ED8700585850 /* LayerData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayerData.swift; sourceTree = "<group>"; };
+		22A360B719A6403D00585850 /* PlayheadController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayheadController.swift; sourceTree = "<group>"; };
 		22B1AAFB19A3DA2E00461FB5 /* SVGController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVGController.swift; sourceTree = "<group>"; };
-		22B66FD719A4A6960049F522 /* AudioScope.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioScope.swift; sourceTree = "<group>"; };
+		22B66FD719A4A6960049F522 /* Playhead.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Playhead.swift; sourceTree = "<group>"; };
 		22BDB6F019A1235100F8485E /* SVGExperiment-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SVGExperiment-Bridging-Header.h"; sourceTree = "<group>"; };
 		22DF71D319A089D80015ADAA /* SVGExperiment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SVGExperiment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		22DF71E719A089D80015ADAA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		22DF71E819A089D80015ADAA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		22DF71EA19A089D80015ADAA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		22EEE0DE19A74A7C0039280E /* SliderController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SliderController.swift; sourceTree = "<group>"; };
+		22EEE0E019A752800039280E /* PlayheadSynchronizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayheadSynchronizer.swift; sourceTree = "<group>"; };
 		8B72709B410C42BE9E0ADDBD /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		D260C2650E5D41658A37C4B7 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -86,9 +90,12 @@
 				2264CDD519A1DD01005ED781 /* AudioBase.swift */,
 				2264CDD619A1DD01005ED781 /* AudioController.swift */,
 				2264CDD719A1DD01005ED781 /* AudioManager.swift */,
-				22B66FD719A4A6960049F522 /* AudioScope.swift */,
-				22B1AAFB19A3DA2E00461FB5 /* SVGController.swift */,
 				22A360B319A5ED8700585850 /* LayerData.swift */,
+				22B66FD719A4A6960049F522 /* Playhead.swift */,
+				22A360B719A6403D00585850 /* PlayheadController.swift */,
+				22B1AAFB19A3DA2E00461FB5 /* SVGController.swift */,
+				22EEE0DE19A74A7C0039280E /* SliderController.swift */,
+				22EEE0E019A752800039280E /* PlayheadSynchronizer.swift */,
 			);
 			name = Engine;
 			sourceTree = "<group>";
@@ -114,13 +121,12 @@
 		22DF71DC19A089D80015ADAA /* SVGExperiment */ = {
 			isa = PBXGroup;
 			children = (
-				22B66FD619A4A6710049F522 /* Engine */,
 				22BDB6F019A1235100F8485E /* SVGExperiment-Bridging-Header.h */,
 				22DF71E819A089D80015ADAA /* AppDelegate.swift */,
-				2264CDDF19A202FE005ED781 /* LanguageBookParserExtension.swift */,
 				223B9F2D19A08A9F007E46E1 /* RootViewController.swift */,
 				22DF71EA19A089D80015ADAA /* Images.xcassets */,
 				223BE9E619A08E6000EE15E5 /* Assets */,
+				22B66FD619A4A6710049F522 /* Engine */,
 				2264CDD219A1CEB5005ED781 /* Extensions */,
 				22DF71DD19A089D80015ADAA /* Supporting Files */,
 			);
@@ -252,14 +258,16 @@
 				2264CDDA19A1DD01005ED781 /* AudioManager.swift in Sources */,
 				2264CDDE19A1DD6B005ED781 /* BlockObserver.swift in Sources */,
 				2264CDD919A1DD01005ED781 /* AudioController.swift in Sources */,
+				22A360B819A6403D00585850 /* PlayheadController.swift in Sources */,
+				22EEE0DF19A74A7C0039280E /* SliderController.swift in Sources */,
+				22EEE0E119A752800039280E /* PlayheadSynchronizer.swift in Sources */,
 				223B9F2E19A08A9F007E46E1 /* RootViewController.swift in Sources */,
 				22B1AAFC19A3DA2E00461FB5 /* SVGController.swift in Sources */,
 				2264CDD419A1CEC3005ED781 /* NSLayoutConstraint.swift in Sources */,
 				22A360B419A5ED8700585850 /* LayerData.swift in Sources */,
 				22DF71E919A089D80015ADAA /* AppDelegate.swift in Sources */,
-				22B66FD819A4A6960049F522 /* AudioScope.swift in Sources */,
+				22B66FD819A4A6960049F522 /* Playhead.swift in Sources */,
 				2264CDD819A1DD01005ED781 /* AudioBase.swift in Sources */,
-				2264CDE019A202FE005ED781 /* LanguageBookParserExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

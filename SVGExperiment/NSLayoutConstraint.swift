@@ -20,6 +20,18 @@ extension NSLayoutConstraint {
             multiplier: 1.0,
             constant: 0.0)
     }
+
+    convenience init(bottomAnchor item: UIView, toItem another: UIView, padding: CGFloat = 0) {
+        self.init(item: item,
+            attribute: .Bottom,
+            relatedBy: .Equal,
+            toItem: another,
+            attribute: .Bottom,
+            multiplier: 1.0,
+            constant: padding)
+    }
+
+    // TODO: topAnchor
     
     convenience init(item: UIView, width: CGFloat) {
         self.init(item: item,
